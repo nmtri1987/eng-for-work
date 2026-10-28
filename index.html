@@ -156,7 +156,29 @@ figure.diagram.v61-diagram{display:block;min-width:0;padding:0;background:#fbfef
 @media(max-width:420px){.v61-nav-caption{font-size:8px}.v61-diagram-heading strong{font-size:11px}.v61-pan-hint{flex-basis:100%;margin-left:0}}
 @media print{.v61-diagram-canvas{overflow:visible!important}.v61-diagram-canvas svg{min-width:0!important}.v4-nav-tools{display:none!important}}
 
-</style></head><body>
+</style><style id="per-sentence-audio-style">
+/* Per-sentence pronunciation controls: compact, keyboard accessible, no external assets. */
+.audio-unit{display:inline;white-space:normal}
+.audio-inline{appearance:none;display:inline-flex;vertical-align:middle;align-items:center;justify-content:center;
+  width:25px;height:25px;margin:0 3px 0 5px;padding:3px;border-radius:7px;
+  border:1px solid #b9d6d4;background:#edf8f6;color:#14736c;cursor:pointer;
+  line-height:1;flex:0 0 auto;transition:background .15s,border-color .15s,transform .12s}
+.audio-inline svg{height:16px;width:16px;display:block;pointer-events:none}
+.audio-inline:hover{background:#d8f3ee;border-color:#75b7ae;color:#075b56}
+.audio-inline:focus-visible{outline:2px solid #0f8d81;outline-offset:2px}
+.audio-inline:active{transform:scale(.92)}
+.audio-inline.is-playing{background:#147f75;border-color:#147f75;color:white;animation:audio-breathe 1s ease-in-out infinite}
+@keyframes audio-breathe{50%{box-shadow:0 0 0 3px rgba(20,127,117,.16)}}
+.speech > span.audio-voice-target{line-height:1.75;min-width:0}
+.speech .audio-inline{width:25px;height:25px;margin-left:7px}
+.v4-sentence .audio-inline,.instructor .audio-inline,.m5-sentence .audio-inline{margin-left:6px}
+.adv-ex .audio-inline,.better-text .audio-inline{margin-right:4px}
+.audio-standalone{margin-left:6px}
+@media(max-width:600px){.audio-inline{width:29px;height:29px}.audio-inline svg{width:17px;height:17px}.speech{align-items:start}}
+@media print{.audio-inline{display:none!important}}
+@media(prefers-reduced-motion:reduce){.audio-inline{transition:none}.audio-inline.is-playing{animation:none}}
+</style>
+</head><body>
 <div class="layout" id="appLayout"><div aria-hidden="true" class="mobile-backdrop" id="mobileBackdrop"></div><aside aria-label="Điều hướng nội dung" class="sidebar" id="appSidebar"><div class="sidebar-top"><div aria-hidden="true" class="mini-logo">WE</div><div class="brand"><div class="kicker">PERSONAL LEARNING HANDBOOK</div><b>Workplace English<br/>Playbook</b><p>Nói tự nhiên với đồng nghiệp Pháp · dễ hiểu các course IT</p></div><button aria-controls="appSidebar" aria-expanded="true" aria-label="Thu gọn menu" class="sidebar-toggle" id="sidebarToggle" title="Thu gọn menu" type="button"><svg aria-hidden="true" class="toggle-icon" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24"><rect height="16" rx="2" width="18" x="3" y="4"></rect><path d="M9 4v16m6-12-4 4 4 4"></path></svg></button></div><div class="v4-nav-tools" role="group" aria-label="Điều khiển nhóm mục lục"><span class="v61-nav-caption">MỤC LỤC</span><div class="v61-nav-actions"><button id="expandGroups" aria-label="Mở tất cả nhóm mục lục" title="Mở tất cả nhóm mục lục" type="button"><svg aria-hidden="true" viewBox="0 0 24 24"><path d="m7 7 5 5 5-5"/><path d="m7 13 5 5 5-5"/></svg></button><button id="collapseGroups" aria-label="Thu tất cả nhóm mục lục" title="Thu tất cả nhóm mục lục" type="button"><svg aria-hidden="true" viewBox="0 0 24 24"><path d="m7 11 5-5 5 5"/><path d="m7 17 5-5 5 5"/></svg></button></div></div><nav aria-label="Mục lục"><div class="side-group"><button aria-controls="navitems-0" aria-expanded="true" class="v4-group-heading" type="button"><span>Nền tảng / English models</span><svg aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 16 16"><path d="m4 6 4 4 4-4"></path></svg></button><div class="v4-group-items" id="navitems-0"><a aria-label="Tổng quan &amp; mental model" class="side-link" href="#overview" title="Tổng quan &amp; mental model"><svg aria-hidden="true" class="side-icon" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewbox="0 0 24 24"><circle cx="12" cy="12" r="9"></circle><path d="M12 3v9l6 3"></path></svg><span class="link-text">Tổng quan &amp; mental model</span><span aria-hidden="true" class="num">01</span></a><a aria-label="IN / ON / AT / BY" class="side-link" href="#prepositions" title="IN / ON / AT / BY"><svg aria-hidden="true" class="side-icon" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewbox="0 0 24 24"><rect height="18" rx="3" width="18" x="3" y="3"></rect><path d="m8 12 3 3 5-6"></path></svg><span class="link-text">IN / ON / AT / BY</span><span aria-hidden="true" class="num">02</span></a><a aria-label="PR &amp; giới từ thực tế" class="side-link" href="#pr-context" title="PR &amp; giới từ thực tế"><svg aria-hidden="true" class="side-icon" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewbox="0 0 24 24"><rect height="18" rx="2" width="16" x="4" y="3"></rect><path d="m9 9 -3 3 3 3m6-6 3 3-3 3"></path></svg><span class="link-text">PR &amp; giới từ thực tế</span><span aria-hidden="true" class="num">03</span></a><a aria-label="50 trạng từ &amp; sắc thái" class="side-link" href="#adverbs" title="50 trạng từ &amp; sắc thái"><svg aria-hidden="true" class="side-icon" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewbox="0 0 24 24"><path d="m12 3 1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8zM19 16l.7 2.3L22 19l-2.3.7L19 22l-.7-2.3L16 19l2.3-.7z"></path></svg><span class="link-text">50 trạng từ &amp; sắc thái</span><span aria-hidden="true" class="num">04</span></a><a aria-label="Present Perfect" class="side-link" href="#present-perfect" title="Present Perfect"><svg aria-hidden="true" class="side-icon" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewbox="0 0 24 24"><circle cx="12" cy="12" r="9"></circle><path d="M12 6v6l4 2"></path></svg><span class="link-text">Present Perfect</span><span aria-hidden="true" class="num">05</span></a><a aria-label="Nghe không rõ &amp; hỏi lại" class="side-link" href="#listen-and-clarify" title="Nghe không rõ &amp; hỏi lại"><svg aria-hidden="true" class="side-icon" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewbox="0 0 24 24"><path d="M6 10V9a6 6 0 0 1 12 0c0 5-6 5-6 10a3 3 0 0 1-6 0"></path></svg><span class="link-text">Nghe không rõ &amp; hỏi lại</span><span aria-hidden="true" class="num">06</span></a></div></div><div class="side-group"><button aria-controls="navitems-1" aria-expanded="true" class="v4-group-heading" type="button"><span>Đời sống &amp; meetings</span><svg aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 16 16"><path d="m4 6 4 4 4-4"></path></svg></button><div class="v4-group-items" id="navitems-1"><a aria-label="Lunch · coffee · after work" class="side-link" href="#social" title="Lunch · coffee · after work"><svg aria-hidden="true" class="side-icon" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewbox="0 0 24 24"><path d="M10 2v2M14 2v2M4 7h16M5 4h14v9a7 7 0 0 1-14 0z"></path><path d="M20 8h1a3 3 0 0 1 0 6h-1"></path></svg><span class="link-text">Lunch · coffee · after work</span><span aria-hidden="true" class="num">07</span></a><a aria-label="Hội thoại theo vai" class="side-link" href="#dialogues" title="Hội thoại theo vai"><svg aria-hidden="true" class="side-icon" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewbox="0 0 24 24"><path d="M20 11.5a7.5 7.5 0 0 1-8 7.5 10 10 0 0 1-4-.8L3 20l1.7-4.5A7.5 7.5 0 1 1 20 11.5Z"></path><path d="M8 10h8M8 13h5"></path></svg><span class="link-text">Hội thoại theo vai</span><span aria-hidden="true" class="num">08</span></a><a aria-label="Meeting với leaders" class="side-link" href="#meeting-skills" title="Meeting với leaders"><svg aria-hidden="true" class="side-icon" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewbox="0 0 24 24"><circle cx="9" cy="8" r="3"></circle><path d="M3 20v-2a6 6 0 0 1 12 0v2M17 5a3 3 0 0 1 0 6m4 9v-2a5 5 0 0 0-3-4.6"></path></svg><span class="link-text">Meeting với leaders</span><span aria-hidden="true" class="num">09</span></a><a aria-label="Meeting Fluency Lab" class="side-link" href="#meeting-response-lab" title="Meeting Fluency Lab"><svg aria-hidden="true" class="side-icon" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewbox="0 0 24 24"><circle cx="9" cy="8" r="3"></circle><path d="M3 20v-2a6 6 0 0 1 12 0v2M17 5a3 3 0 0 1 0 6m4 9v-2a5 5 0 0 0-3-4.6"></path></svg><span class="link-text">Meeting Fluency Lab</span><span aria-hidden="true" class="num">09B</span></a><a aria-label="Technical Advisor &amp; IT" class="side-link" href="#work" title="Technical Advisor &amp; IT"><svg aria-hidden="true" class="side-icon" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewbox="0 0 24 24"><rect height="14" rx="2" width="18" x="3" y="7"></rect><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2M3 13h18"></path></svg><span class="link-text">Technical Advisor &amp; IT</span><span aria-hidden="true" class="num">10</span></a><a aria-label="Nên nói / nên tránh" class="side-link" href="#say-avoid" title="Nên nói / nên tránh"><svg aria-hidden="true" class="side-icon" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewbox="0 0 24 24"><path d="M20 7V5a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v14l4-3h10a2 2 0 0 0 2-2v-2"></path><path d="m9 10 2 2 4-5"></path></svg><span class="link-text">Nên nói / nên tránh</span><span aria-hidden="true" class="num">11</span></a></div></div><div class="side-group"><button aria-controls="navitems-2" aria-expanded="true" class="v4-group-heading" type="button"><span>Courses &amp; ôn tập</span><svg aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 16 16"><path d="m4 6 4 4 4-4"></path></svg></button><div class="v4-group-items" id="navitems-2"><a aria-label="Hiểu Pluralsight / Google" class="side-link" href="#courses" title="Hiểu Pluralsight / Google"><svg aria-hidden="true" class="side-icon" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewbox="0 0 24 24"><rect height="15" rx="2" width="20" x="2" y="4"></rect><path d="M8 22h8M12 19v3m-2-13 5 3-5 3z"></path></svg><span class="link-text">Hiểu Pluralsight / Google</span><span aria-hidden="true" class="num">12</span></a><a aria-label="Từ vựng theo nhóm" class="side-link" href="#vocabulary" title="Từ vựng theo nhóm"><svg aria-hidden="true" class="side-icon" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewbox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2Z"></path><path d="M9 7h7M9 11h5"></path></svg><span class="link-text">Từ vựng theo nhóm</span><span aria-hidden="true" class="num">13</span></a><a aria-label="Flashcards &amp; Quiz" class="side-link" href="#practice" title="Flashcards &amp; Quiz"><svg aria-hidden="true" class="side-icon" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewbox="0 0 24 24"><rect height="16" rx="3" width="20" x="2" y="4"></rect><path d="M7 9h10M7 13h6m4 1 2 2-2 2"></path></svg><span class="link-text">Flashcards &amp; Quiz</span><span aria-hidden="true" class="num">14</span></a><a aria-label="Lộ trình 4 tuần" class="side-link" href="#plan" title="Lộ trình 4 tuần"><svg aria-hidden="true" class="side-icon" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewbox="0 0 24 24"><rect height="16" rx="2" width="18" x="3" y="5"></rect><path d="M7 2v6M17 2v6M3 10h18m-13 4h3m2 0h3m-8 4h3"></path></svg><span class="link-text">Lộ trình 4 tuần</span><span aria-hidden="true" class="num">15</span></a><a aria-label="Ghi chú Markdown gốc" class="side-link" href="#original" title="Ghi chú Markdown gốc"><svg aria-hidden="true" class="side-icon" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewbox="0 0 24 24"><path d="M5 3h10l5 5v13H5zM15 3v6h5M8 13h8M8 17h8"></path></svg><span class="link-text">Ghi chú Markdown gốc</span><span aria-hidden="true" class="num">16</span></a></div></div><div class="side-group"><button aria-controls="navitems-3" aria-expanded="true" class="v4-group-heading" type="button"><span>Luyện tập mở rộng</span><svg aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 16 16"><path d="m4 6 4 4 4-4"></path></svg></button><div class="v4-group-items" id="navitems-3"><a aria-label="IN / ON · Time &amp; Work" class="side-link" href="#prep-lab" title="IN / ON · Time &amp; Work"><svg aria-hidden="true" class="side-icon" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1.8" viewbox="0 0 24 24"><rect height="16" rx="4" width="16" x="4" y="4"></rect><path d="M8 12h8m-4-4v8"></path></svg><span class="link-text">IN / ON · Time &amp; Work</span><span aria-hidden="true" class="num">17</span></a><a aria-label="Collocations · GET / MAKE..." class="side-link" href="#collocations" title="Collocations · GET / MAKE..."><svg aria-hidden="true" class="side-icon" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1.8" viewbox="0 0 24 24"><rect height="16" rx="4" width="16" x="4" y="4"></rect><path d="M8 12h8m-4-4v8"></path></svg><span class="link-text">Collocations · GET / MAKE...</span><span aria-hidden="true" class="num">18</span></a><a aria-label="Deep dive · Social &amp; IT" class="side-link" href="#conversation-deep-dive" title="Deep dive · Social &amp; IT"><svg aria-hidden="true" class="side-icon" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1.8" viewbox="0 0 24 24"><rect height="16" rx="4" width="16" x="4" y="4"></rect><path d="M8 12h8m-4-4v8"></path></svg><span class="link-text">Deep dive · Social &amp; IT</span><span aria-hidden="true" class="num">19</span></a><a aria-label="17 Markdown sources" class="side-link" href="#source-library" title="17 Markdown sources"><svg aria-hidden="true" class="side-icon" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1.8" viewbox="0 0 24 24"><rect height="16" rx="4" width="16" x="4" y="4"></rect><path d="M8 12h8m-4-4v8"></path></svg><span class="link-text">17 Markdown sources</span><span aria-hidden="true" class="num">20</span></a></div></div></nav><div class="aside-note">Self-contained HTML. Mở trên máy tính/điện thoại, không cần Internet. Có thể Ctrl+P để in. Thông tin IT là ví dụ luyện giao tiếp, không phải kết quả kiểm tra cấu hình thực tế.</div></aside><main class="content"><div class="mobile-topbar"><button aria-controls="appSidebar" aria-expanded="false" aria-label="Mở mục lục" id="mobileNavToggle" type="button"><svg aria-hidden="true" fill="none" height="20" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="20"><path d="M4 7h16M4 12h16M4 17h16"></path></svg><span>Mục lục</span></button><span class="mobile-site-name">Workplace English</span></div><header class="hero" id="top"><div class="eyebrow">ENGLISH FOR REAL CONVERSATIONS · PRACTICAL LEARNING</div><h1>Speak naturally —<br/>at lunch, in meetings &amp; in tech courses.</h1><p>Học theo cụm dễ nói: IN / ON / AT / BY, GET / MAKE / DO / TAKE / HAVE; 171 hội thoại cùng 70 mẫu câu meeting về thử nghiệm, xin logs, chờ approval, báo cáo với PMO / leaders và trao đổi với đồng nghiệp Pháp. Kèm hội thoại thực hành và luyện phản xạ trong meeting.</p><div class="tags"><span class="tag">Lunch • coffee • after-work</span><span class="tag">AI coding agent</span><span class="tag">SonarQube • Snyk</span><span class="tag">Cloud courses</span><span class="tag">Prepositions &amp; fluency</span><span class="tag">50 real-life adverbs</span><span class="tag">Present Perfect + timelines</span><span class="tag">Ask to repeat naturally</span><span class="tag">Leaders + Developers</span><span class="tag">Meeting Fluency Lab</span></div><div class="v4-hero-jumps"><a href="#meeting-response-lab">Meeting fluency ↗</a><a href="#prep-lab">IN / ON labs ↗</a><a href="#collocations">Collocations ↗</a><a href="#conversation-deep-dive">Real-life situations ↗</a><a href="#source-library">Source library ↗</a></div></header>
 <div class="quick-stats"><div class="stat"><strong>171</strong><span>Hội thoại theo vai</span></div><div class="stat"><strong>52</strong><span>Cặp nên nói / nên tránh</span></div><div class="stat"><strong>385</strong><span>Flashcards: course + trạng từ</span></div><div class="stat"><strong>82</strong><span>Quiz có giải thích</span></div></div>
 <div class="toolbar"><input aria-label="Search across examples" class="search-input" id="globalSearch" placeholder="⌕  Tìm câu, từ, chủ đề... (vd: in production, coffee, Snyk, imminent)"/><span class="search-info" id="searchStatus">Tìm trong hội thoại, câu mẫu và từ vựng</span><button class="tool-btn" id="clearSearch">Xóa lọc</button><button class="tool-btn" id="printBtn">⎙ In / PDF</button></div>
@@ -6638,4 +6660,89 @@ $('m5Next').addEventListener('click',()=>{pos=(pos+1)%drills.length;renderDrill(
 $('m5Copy').addEventListener('click',()=>{copy(drills[pos][2]);$('m5DrillFeedback').textContent='Copied ✓';});
 $('m5Listen').addEventListener('click',()=>speak(drills[pos][2]));renderDrill();
 })();
-</script></body></html>
+</script><script id="per-sentence-audio-script">
+/* English sentence audio. Browser SpeechSynthesis; no remote library or API needed. */
+(function(){
+'use strict';
+const synth=window.speechSynthesis;
+let activeBtn=null,activeUtterance=null,mutationScheduled=false;
+const icon='<svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round"><path d="M11 5 6.8 9H3v6h3.8L11 19V5Z"/><path d="M15 9a4 4 0 0 1 0 6"/><path d="M18 6a8 8 0 0 1 0 12"/></svg>';
+const stopIcon='<svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2"><rect x="6" y="6" width="12" height="12" rx="2"/></svg>';
+function reset(){if(activeBtn){activeBtn.classList.remove('is-playing');activeBtn.innerHTML=icon;activeBtn.title='Nghe câu này';activeBtn.setAttribute('aria-label','Nghe câu tiếng Anh');}activeBtn=null;activeUtterance=null;}
+function stop(){if(synth){try{synth.cancel()}catch(_){}}reset();}
+function selectVoice(){if(!synth)return null;const a=synth.getVoices();return a.find(v=>v.lang==='en-US'&&v.localService)||a.find(v=>v.lang==='en-US')||a.find(v=>/^en(-|$)/i.test(v.lang)&&v.localService)||a.find(v=>/^en(-|$)/i.test(v.lang))||null;}
+function speak(text,btn){text=(text||'').trim();if(!text)return;
+ if(!synth||!window.SpeechSynthesisUtterance){btn.title='Trình duyệt không hỗ trợ đọc tiếng Anh';return;}
+ if(btn===activeBtn){stop();return;}
+ stop();const u=new SpeechSynthesisUtterance(text);u.lang='en-US';u.rate=.88;u.pitch=1;
+ const voice=selectVoice();if(voice)u.voice=voice;
+ activeBtn=btn;activeUtterance=u;btn.classList.add('is-playing');btn.innerHTML=stopIcon;btn.title='Dừng đọc';btn.setAttribute('aria-label','Dừng đọc câu tiếng Anh');
+ u.onend=()=>{if(activeUtterance===u)reset()};u.onerror=()=>{if(activeUtterance===u)reset()};
+ try{synth.speak(u)}catch(_){reset()}
+}
+function audioButton(text){const btn=document.createElement('button');btn.type='button';btn.className='audio-inline';btn.innerHTML=icon;btn.dataset.audioText=text.trim();btn.title='Nghe câu này';btn.setAttribute('aria-label','Nghe câu tiếng Anh');return btn;}
+function segmentsOf(str){const val=(str||'').trim();if(!val)return [];
+ const chunks=val.split(/(?<=[.!?…]["”’]?)\s+(?=[“"‘'\[\(]?[A-Z0-9])/u);const parts=[];
+ for(const item of chunks){const prev=parts[parts.length-1]||'';
+  if(parts.length&&/(?:Mr|Mrs|Ms|Dr|Prof|St|No|vs|e\.g|i\.e|etc)\.$/i.test(prev))parts[parts.length-1]+=' '+item;
+  else parts.push(item);
+ }
+ return parts;
+}
+function renderPlain(el,allSentences=true){if(!el||(el.dataset.audioReady==='1'&&el.querySelector('.audio-inline')))return;
+ const text=el.textContent.trim();if(!text)return;
+ const chunks=allSentences?segmentsOf(text):[text];if(!chunks.length)return;
+ // Only use for elements that hold ordinary text, so source markup is not lost.
+ el.textContent='';
+ chunks.forEach((chunk,i)=>{if(i)el.append(document.createTextNode(' '));
+  const unit=document.createElement('span');unit.className='audio-unit';
+  const spoken=document.createElement('span');spoken.textContent=chunk;
+  unit.append(spoken,audioButton(chunk));el.append(unit);
+ });el.dataset.audioReady='1';
+}
+function attach(el,text,position){if(!el||el.dataset.audioReady==='1')return;
+ const str=(text||el.textContent||'').trim();if(!str)return;
+ const btn=audioButton(str);btn.classList.add('audio-standalone');
+ if(position){const relative=el.querySelector(position);if(relative)el.insertBefore(btn,relative);else el.append(btn)}
+ else el.append(btn);
+ el.dataset.audioReady='1';
+}
+function scanStatic(){
+ document.querySelectorAll('.speech > span:not(.speaker)').forEach(el=>{el.classList.add('audio-voice-target');renderPlain(el)});
+ document.querySelectorAll('.v4-sentence, .topic-sample p, .instructor, .avoid-text').forEach(el=>renderPlain(el));
+ document.querySelectorAll('.adv-ex strong').forEach(el=>attach(el));
+ document.querySelectorAll('.better-text').forEach(el=>{const copy=el.querySelector('.inline-copy');attach(el,copy?.dataset.copy, '.inline-copy')});
+ document.querySelectorAll('.simplified').forEach(el=>{
+  if(el.dataset.audioReady==='1')return;
+  let txt=el.textContent.replace(/^Nói đơn giản:\s*/,'').trim();
+  attach(el,txt);
+ });
+ document.querySelectorAll('.vocab-top strong').forEach(el=>attach(el));
+ document.querySelectorAll('#pr-context table tbody td:nth-child(2), #listen-and-clarify table tbody td:nth-child(2), #meeting-skills table tbody td:nth-child(2), #present-perfect table tbody td:nth-child(2), #work table tbody td:last-child, #courses table tbody td:first-child, #courses table tbody td:last-child, #meeting-response-lab .m5-quick-table tbody td:nth-child(2), #prepositions table tbody td:nth-child(1), #prepositions table tbody td:nth-child(3)').forEach(el=>attach(el,el.textContent.replace(/\s*⧉\s*$/u,''),'button.inline-copy'));
+ document.querySelectorAll('[data-copy].inline-copy').forEach(el=>{
+  if(el.parentElement?.querySelector('.audio-inline'))return;
+  const audio=audioButton(el.dataset.copy||'');el.insertAdjacentElement('afterend',audio);
+ });
+ // The original Markdown source archive is a verbatim reference; all curated study materials are enhanced above.
+}
+function scanDynamic(){
+ document.querySelectorAll('#m5List .m5-sentence').forEach(el=>renderPlain(el));
+ const d=document.getElementById('m5DrillAnswer');if(d&&d.textContent.trim()&&!d.querySelector('.audio-inline'))renderPlain(d);
+}
+// Delegate clicks: new icons work even in content recreated by filters and variant tabs.
+document.addEventListener('click',event=>{
+ const btn=event.target.closest('.audio-inline');
+ if(btn){event.preventDefault();event.stopPropagation();speak(btn.dataset.audioText,btn);return;}
+ if(event.target.closest('.speak-btn,.m5-listen,#m5Listen,#flashSpeak'))reset();
+},true);
+scanStatic();scanDynamic();
+const dynamic=document.getElementById('m5List');
+const drill=document.getElementById('m5DrillAnswer');
+if(dynamic||drill){const observer=new MutationObserver(()=>{
+ if(mutationScheduled)return;mutationScheduled=true;
+ queueMicrotask(()=>{mutationScheduled=false;scanDynamic()});
+});if(dynamic)observer.observe(dynamic,{childList:true,characterData:true,subtree:true});
+if(drill)observer.observe(drill,{childList:true,characterData:true,subtree:true});}
+})();
+</script>
+</body></html>
