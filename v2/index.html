@@ -606,6 +606,35 @@ html{scroll-behavior:auto!important}/* Fast direct navigation across a long hand
 @media(max-width:640px){.pb-readerbar{gap:6px;padding:10px}.pb-readerbar button{padding:7px 8px}.pb-readerbar .pb-reader-actions{display:flex}.pb-readerbar select{width:100%;max-width:100%;order:-1;flex:1 1 100%}.pb-readerbar .pb-step{flex:1;text-align:right}.section .section-head{padding-right:0;padding-bottom:12px}.pb-chapter-toggle{position:static;margin-top:10px;max-width:none;width:max-content}.pb-sub-toggle{margin-left:6px;margin-top:5px;font-size:10px}}
 @media print{.pb-readerbar,.pb-reader-help,.pb-chapter-toggle,.pb-sub-toggle{display:none!important}.section.pb-focus-hidden,.section.pb-content-collapsed> :not(.section-head),.pb-sub-hidden{display:initial!important}.section.pb-focus-hidden{display:block!important}.section.pb-content-collapsed{border:0}}
 </style>
+<style id="pb-search-highlighting-style">
+/* Search discovery is different from the teal active-reading indicator. */
+#appSidebar a.side-link.pb-search-hit{position:relative;background:rgba(251,191,36,.10);box-shadow:inset 3px 0 #e9a93d;color:#fbe9ad}
+#appSidebar a.side-link.pb-search-hit.active{background:linear-gradient(90deg,rgba(17,141,132,.45),rgba(241,177,51,.12));box-shadow:inset 3px 0 #3ce0ce, inset 0 -2px #e9b13e;color:#fff}
+#appSidebar .pb-search-badge{display:inline-flex;align-items:center;justify-content:center;min-width:20px;height:18px;padding:0 5px;border-radius:10px;background:#ac7224;color:#fff6dd;font-size:10px;font-weight:800;margin-left:auto;line-height:1}
+#appSidebar .pb-search-group>.v4-group-heading{color:#f1c66d}
+#appSidebar .pb-search-group>.v4-group-heading::after{content:'•';font-size:17px;color:#e9b13e}
+.layout.nav-collapsed #appSidebar .pb-search-badge{position:absolute;right:0;top:2px;min-width:12px;height:12px;padding:0;font-size:0;background:#f1ad43;border:2px solid #122f3d}
+.layout.nav-collapsed #appSidebar a.side-link.pb-search-hit{position:relative;box-shadow:inset 3px 0 #e9b13e}
+mark.pb-search-mark{background:#ffe38c!important;color:#2e2a16!important;box-shadow:0 0 0 1px #e2ac39;border-radius:3px;padding:0 1px;box-decoration-break:clone;-webkit-box-decoration-break:clone}
+mark.pb-search-mark.pb-search-current{background:#f3aa37!important;color:#142f38!important;box-shadow:0 0 0 2px #a46a14,0 0 0 5px rgba(243,170,55,.16);border-radius:3px}
+#pb-search-panel{margin:10px 0 20px;background:#fffdf7;border:1px solid #efdba3;border-radius:12px;padding:12px 14px;display:none;scroll-margin-top:80px}
+#pb-search-panel.pb-visible{display:block}
+.pb-search-summary{display:flex;gap:10px;justify-content:space-between;align-items:center;flex-wrap:wrap}
+.pb-search-summary strong{color:#805b1d;font-size:13px}
+.pb-search-summary small{color:#6e665b;font-size:11px}
+.pb-search-controls{display:flex;gap:6px;align-items:center;flex-wrap:wrap}
+.pb-search-controls button{border-radius:8px;border:1px solid #dbc68a;background:#fff9e8;color:#76551f;padding:6px 10px;font-size:11px;font-weight:750;cursor:pointer}
+.pb-search-controls button:hover,.pb-search-result:hover{background:#fff1c5}
+.pb-search-controls button:disabled{opacity:.4;cursor:default}
+.pb-search-results{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px;max-height:132px;overflow-y:auto}
+.pb-search-result{max-width:min(100%,360px);display:inline-flex;align-items:center;gap:8px;border:1px solid #e5d29e;background:#fff;border-radius:7px;padding:7px 9px;color:#6c5525;cursor:pointer;text-align:left;font-size:11px}
+.pb-search-result span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.pb-search-result b{min-width:20px;background:#f8e5b7;border-radius:10px;font-size:10px;padding:2px 5px;text-align:center}
+.pb-search-result.pb-search-result-current{border-color:#1c9786;box-shadow:0 0 0 1px rgba(28,151,134,.3)}
+.pb-search-empty{font-size:12px;color:#876322}
+@media(max-width:700px){#pb-search-panel{padding:10px}.pb-search-summary{align-items:flex-start}.pb-search-results{max-height:155px}.pb-search-result{max-width:100%}}
+@media print{#pb-search-panel{display:none!important}mark.pb-search-mark{background:transparent!important;color:inherit!important;box-shadow:none!important}}
+</style>
 </head><body>
 <div class="layout" id="appLayout"><div aria-hidden="true" class="mobile-backdrop" id="mobileBackdrop"></div><aside aria-label="Điều hướng nội dung" class="sidebar" id="appSidebar"><div class="sidebar-top"><div aria-hidden="true" class="mini-logo">WE</div><div class="brand"><div class="kicker">PERSONAL LEARNING HANDBOOK</div><b>Workplace English<br/>Playbook</b><p>Nói tự nhiên với đồng nghiệp Pháp · dễ hiểu các course IT</p></div><button aria-controls="appSidebar" aria-expanded="true" aria-label="Thu gọn menu" class="sidebar-toggle" id="sidebarToggle" title="Thu gọn menu" type="button"><svg aria-hidden="true" class="toggle-icon" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24"><rect height="16" rx="2" width="18" x="3" y="4"></rect><path d="M9 4v16m6-12-4 4 4 4"></path></svg></button></div><div class="v4-nav-tools" role="group" aria-label="Điều khiển nhóm mục lục"><span class="v61-nav-caption">MỤC LỤC</span><div class="v61-nav-actions"><button id="expandGroups" aria-label="Mở tất cả nhóm mục lục" title="Mở tất cả nhóm mục lục" type="button"><svg aria-hidden="true" viewBox="0 0 24 24"><path d="m7 7 5 5 5-5"/><path d="m7 13 5 5 5-5"/></svg></button><button id="collapseGroups" aria-label="Thu tất cả nhóm mục lục" title="Thu tất cả nhóm mục lục" type="button"><svg aria-hidden="true" viewBox="0 0 24 24"><path d="m7 11 5-5 5 5"/><path d="m7 17 5-5 5 5"/></svg></button></div></div><nav aria-label="Mục lục theo chủ đề"><div class="side-group"><button type="button" class="v4-group-heading" aria-expanded="true" aria-controls="navitems-0"><span>BẮT ĐẦU & PHẢN XẠ</span><svg aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 16 16"><path d="m4 6 4 4 4-4"/></svg></button><div class="v4-group-items" id="navitems-0"><a class="side-link" aria-label="Lộ trình học · Big picture" title="Lộ trình học · Big picture" href="#learning-map"><svg aria-hidden="true" class="side-icon" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="4"/><path d="M8 12h8M12 8v8"/></svg><span class="link-text">Lộ trình học · Big picture</span></a><a class="side-link" aria-label="Bị hỏi bất ngờ · Quick Reflex" title="Bị hỏi bất ngờ · Quick Reflex" href="#reflex-lab"><svg aria-hidden="true" class="side-icon" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="4"/><path d="M8 12h8M12 8v8"/></svg><span class="link-text">Bị hỏi bất ngờ · Quick Reflex</span></a><a class="side-link" aria-label="Short replies · Đúng sắc thái" title="Short replies · Đúng sắc thái" href="#quick-replies"><svg aria-hidden="true" class="side-icon" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="4"/><path d="M8 12h8M12 8v8"/></svg><span class="link-text">Short replies · Đúng sắc thái</span></a><a class="side-link" aria-label="Nghe không rõ · Hỏi lại" title="Nghe không rõ · Hỏi lại" href="#listen-and-clarify"><svg aria-hidden="true" class="side-icon" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="4"/><path d="M8 12h8M12 8v8"/></svg><span class="link-text">Nghe không rõ · Hỏi lại</span></a></div></div><div class="side-group"><button type="button" class="v4-group-heading" aria-expanded="false" aria-controls="navitems-1"><span>MENTAL MODELS & CÁC THÌ</span><svg aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 16 16"><path d="m4 6 4 4 4-4"/></svg></button><div class="v4-group-items" id="navitems-1"><a class="side-link" aria-label="Mental models nền tảng" title="Mental models nền tảng" href="#overview"><svg aria-hidden="true" class="side-icon" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="4"/><path d="M8 12h8M12 8v8"/></svg><span class="link-text">Mental models nền tảng</span></a><a class="side-link" aria-label="4 góc nhìn · Decision tree" title="4 góc nhìn · Decision tree" href="#mm-master"><svg aria-hidden="true" class="side-icon" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M7 12h10M12 7v10"/></svg><span class="link-text">4 góc nhìn · Decision tree</span></a><a class="side-link" aria-label="Timeline · 12 thì" title="Timeline · 12 thì" href="#mm-timeline"><svg aria-hidden="true" class="side-icon" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M7 12h10M12 7v10"/></svg><span class="link-text">Timeline · 12 thì</span></a><a class="side-link" aria-label="Present Simple / Continuous" title="Present Simple / Continuous" href="#mm-present"><svg aria-hidden="true" class="side-icon" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M7 12h10M12 7v10"/></svg><span class="link-text">Present Simple / Continuous</span></a><a class="side-link" aria-label="Past Simple / Continuous" title="Past Simple / Continuous" href="#mm-past"><svg aria-hidden="true" class="side-icon" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M7 12h10M12 7v10"/></svg><span class="link-text">Past Simple / Continuous</span></a><a class="side-link" aria-label="Present Perfect cơ bản" title="Present Perfect cơ bản" href="#present-perfect"><svg aria-hidden="true" class="side-icon" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="4"/><path d="M8 12h8M12 8v8"/></svg><span class="link-text">Present Perfect cơ bản</span></a><a class="side-link" aria-label="Perfect / Past Perfect nâng cao" title="Perfect / Past Perfect nâng cao" href="#mm-perfect"><svg aria-hidden="true" class="side-icon" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M7 12h10M12 7v10"/></svg><span class="link-text">Perfect / Past Perfect nâng cao</span></a><a class="side-link" aria-label="Future · Will / Going to" title="Future · Will / Going to" href="#mm-future"><svg aria-hidden="true" class="side-icon" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M7 12h10M12 7v10"/></svg><span class="link-text">Future · Will / Going to</span></a><a class="side-link" aria-label="Từ chỉ thời gian" title="Từ chỉ thời gian" href="#mm-time-words"><svg aria-hidden="true" class="side-icon" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M7 12h10M12 7v10"/></svg><span class="link-text">Từ chỉ thời gian</span></a><a class="side-link" aria-label="Would / Could / Should have" title="Would / Could / Should have" href="#mm-modals"><svg aria-hidden="true" class="side-icon" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M7 12h10M12 7v10"/></svg><span class="link-text">Would / Could / Should have</span></a><a class="side-link" aria-label="Supposed to / Expected to" title="Supposed to / Expected to" href="#mm-supposed"><svg aria-hidden="true" class="side-icon" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M7 12h10M12 7v10"/></svg><span class="link-text">Supposed to / Expected to</span></a><a class="side-link" aria-label="Trạng từ &amp; sắc thái" title="Trạng từ &amp; sắc thái" href="#adverbs"><svg aria-hidden="true" class="side-icon" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="4"/><path d="M8 12h8M12 8v8"/></svg><span class="link-text">Trạng từ &amp; sắc thái</span></a><a class="side-link" aria-label="Lose / Lost · True / Truth" title="Lose / Lost · True / Truth" href="#word-lab"><svg aria-hidden="true" class="side-icon" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="4"/><path d="M8 12h8M12 8v8"/></svg><span class="link-text">Lose / Lost · True / Truth</span></a><a class="side-link" aria-label="Every / Any · Mix-ups" title="Every / Any · Mix-ups" href="#common-mixups"><svg aria-hidden="true" class="side-icon" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="4"/><path d="M8 12h8M12 8v8"/></svg><span class="link-text">Every / Any · Mix-ups</span></a></div></div><div class="side-group"><button type="button" class="v4-group-heading" aria-expanded="false" aria-controls="navitems-2"><span>IN / ON / AT / BY</span><svg aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 16 16"><path d="m4 6 4 4 4-4"/></svg></button><div class="v4-group-items" id="navitems-2"><a class="side-link" aria-label="Mental model IN / ON / AT / BY" title="Mental model IN / ON / AT / BY" href="#prepositions"><svg aria-hidden="true" class="side-icon" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="4"/><path d="M8 12h8M12 8v8"/></svg><span class="link-text">Mental model IN / ON / AT / BY</span></a><a class="side-link" aria-label="Inside / Surface / Point" title="Inside / Surface / Point" href="#mm-prep-model"><svg aria-hidden="true" class="side-icon" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M7 12h10M12 7v10"/></svg><span class="link-text">Inside / Surface / Point</span></a><a class="side-link" aria-label="Time · By / Until / During" title="Time · By / Until / During" href="#mm-prep-time"><svg aria-hidden="true" class="side-icon" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M7 12h10M12 7v10"/></svg><span class="link-text">Time · By / Until / During</span></a><a class="side-link" aria-label="Office / Home / Floor" title="Office / Home / Floor" href="#mm-prep-place"><svg aria-hidden="true" class="side-icon" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M7 12h10M12 7v10"/></svg><span class="link-text">Office / Home / Floor</span></a><a class="side-link" aria-label="Meeting / Call / Teams" title="Meeting / Call / Teams" href="#mm-prep-meeting"><svg aria-hidden="true" class="side-icon" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M7 12h10M12 7v10"/></svg><span class="link-text">Meeting / Call / Teams</span></a><a class="side-link" aria-label="Travel / Transport" title="Travel / Transport" href="#mm-prep-transport"><svg aria-hidden="true" class="side-icon" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M7 12h10M12 7v10"/></svg><span class="link-text">Travel / Transport</span></a><a class="side-link" aria-label="Azure / PR / Logs" title="Azure / PR / Logs" href="#mm-prep-it"><svg aria-hidden="true" class="side-icon" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M7 12h10M12 7v10"/></svg><span class="link-text">Azure / PR / Logs</span></a><a class="side-link" aria-label="PR comments · IN vs ON" title="PR comments · IN vs ON" href="#pr-context"><svg aria-hidden="true" class="side-icon" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="4"/><path d="M8 12h8M12 8v8"/></svg><span class="link-text">PR comments · IN vs ON</span></a><a class="side-link" aria-label="Tình huống thực hành" title="Tình huống thực hành" href="#prep-lab"><svg aria-hidden="true" class="side-icon" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="4"/><path d="M8 12h8M12 8v8"/></svg><span class="link-text">Tình huống thực hành</span></a></div></div><div class="side-group"><button type="button" class="v4-group-heading" aria-expanded="false" aria-controls="navitems-3"><span>COLLOCATIONS & TỪ VỰNG</span><svg aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 16 16"><path d="m4 6 4 4 4-4"/></svg></button><div class="v4-group-items" id="navitems-3"><a class="side-link" aria-label="Carry on / Carry over / Turn into" title="Carry on / Carry over / Turn into" href="#phrasal-lab"><svg aria-hidden="true" class="side-icon" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="4"/><path d="M8 12h8M12 8v8"/></svg><span class="link-text">Carry on / Carry over / Turn into</span></a><a class="side-link" aria-label="Keen on / Keen to" title="Keen on / Keen to" href="#mm-keen"><svg aria-hidden="true" class="side-icon" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M7 12h10M12 7v10"/></svg><span class="link-text">Keen on / Keen to</span></a><a class="side-link" aria-label="Get / Make / Do / Take / Have" title="Get / Make / Do / Take / Have" href="#collocations"><svg aria-hidden="true" class="side-icon" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="4"/><path d="M8 12h8M12 8v8"/></svg><span class="link-text">Get / Make / Do / Take / Have</span></a><a class="side-link" aria-label="Từ vựng theo chủ đề" title="Từ vựng theo chủ đề" href="#vocabulary"><svg aria-hidden="true" class="side-icon" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="4"/><path d="M8 12h8M12 8v8"/></svg><span class="link-text">Từ vựng theo chủ đề</span></a></div></div><div class="side-group"><button type="button" class="v4-group-heading" aria-expanded="false" aria-controls="navitems-4"><span>MEETINGS & TECHNICAL ADVISOR</span><svg aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 16 16"><path d="m4 6 4 4 4-4"/></svg></button><div class="v4-group-items" id="navitems-4"><a class="side-link" aria-label="Giao tiếp với leaders" title="Giao tiếp với leaders" href="#meeting-skills"><svg aria-hidden="true" class="side-icon" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="4"/><path d="M8 12h8M12 8v8"/></svg><span class="link-text">Giao tiếp với leaders</span></a><a class="side-link" aria-label="Meeting Fluency" title="Meeting Fluency" href="#meeting-response-lab"><svg aria-hidden="true" class="side-icon" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="4"/><path d="M8 12h8M12 8v8"/></svg><span class="link-text">Meeting Fluency</span></a><a class="side-link" aria-label="Daily Meeting Interaction" title="Daily Meeting Interaction" href="#daily-lab"><svg aria-hidden="true" class="side-icon" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="4"/><path d="M8 12h8M12 8v8"/></svg><span class="link-text">Daily Meeting Interaction</span></a><a class="side-link" aria-label="Spoken English · Tự nhiên" title="Spoken English · Tự nhiên" href="#spoken-meeting-lab"><svg aria-hidden="true" class="side-icon" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="4"/><path d="M8 12h8M12 8v8"/></svg><span class="link-text">Spoken English · Tự nhiên</span></a><a class="side-link" aria-label="Manager · Đổi thì trong câu trả lời" title="Manager · Đổi thì trong câu trả lời" href="#mm-conversation"><svg aria-hidden="true" class="side-icon" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M7 12h10M12 7v10"/></svg><span class="link-text">Manager · Đổi thì trong câu trả lời</span></a><a class="side-link" aria-label="5 incident stories · Timeline" title="5 incident stories · Timeline" href="#mm-stories"><svg aria-hidden="true" class="side-icon" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M7 12h10M12 7v10"/></svg><span class="link-text">5 incident stories · Timeline</span></a><a class="side-link" aria-label="Câu ngắn copy / listen" title="Câu ngắn copy / listen" href="#mm-phrases"><svg aria-hidden="true" class="side-icon" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M7 12h10M12 7v10"/></svg><span class="link-text">Câu ngắn copy / listen</span></a><a class="side-link" aria-label="TA / AI / Sonar / Snyk" title="TA / AI / Sonar / Snyk" href="#work"><svg aria-hidden="true" class="side-icon" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="4"/><path d="M8 12h8M12 8v8"/></svg><span class="link-text">TA / AI / Sonar / Snyk</span></a><a class="side-link" aria-label="Nên nói / nên tránh" title="Nên nói / nên tránh" href="#say-avoid"><svg aria-hidden="true" class="side-icon" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="4"/><path d="M8 12h8M12 8v8"/></svg><span class="link-text">Nên nói / nên tránh</span></a></div></div><div class="side-group"><button type="button" class="v4-group-heading" aria-expanded="false" aria-controls="navitems-5"><span>ĐỜI SỐNG & HỘI THOẠI</span><svg aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 16 16"><path d="m4 6 4 4 4-4"/></svg></button><div class="v4-group-items" id="navitems-5"><a class="side-link" aria-label="Lunch / Café / After-work" title="Lunch / Café / After-work" href="#social"><svg aria-hidden="true" class="side-icon" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="4"/><path d="M8 12h8M12 8v8"/></svg><span class="link-text">Lunch / Café / After-work</span></a><a class="side-link" aria-label="Role-play Library" title="Role-play Library" href="#dialogues"><svg aria-hidden="true" class="side-icon" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="4"/><path d="M8 12h8M12 8v8"/></svg><span class="link-text">Role-play Library</span></a><a class="side-link" aria-label="Hội thoại đời sống &amp; work" title="Hội thoại đời sống &amp; work" href="#conversation-deep-dive"><svg aria-hidden="true" class="side-icon" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="4"/><path d="M8 12h8M12 8v8"/></svg><span class="link-text">Hội thoại đời sống &amp; work</span></a></div></div><div class="side-group"><button type="button" class="v4-group-heading" aria-expanded="false" aria-controls="navitems-6"><span>IT COURSES & TOWN HALL</span><svg aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 16 16"><path d="m4 6 4 4 4-4"/></svg></button><div class="v4-group-items" id="navitems-6"><a class="side-link" aria-label="Pluralsight / Google Skills" title="Pluralsight / Google Skills" href="#courses"><svg aria-hidden="true" class="side-icon" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="4"/><path d="M8 12h8M12 8v8"/></svg><span class="link-text">Pluralsight / Google Skills</span></a><a class="side-link" aria-label="Town Hall · CEVA / GCC" title="Town Hall · CEVA / GCC" href="#townhall-lab"><svg aria-hidden="true" class="side-icon" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="4"/><path d="M8 12h8M12 8v8"/></svg><span class="link-text">Town Hall · CEVA / GCC</span></a></div></div><div class="side-group"><button type="button" class="v4-group-heading" aria-expanded="false" aria-controls="navitems-7"><span>BÀI TẬP & NGUỒN THAM KHẢO</span><svg aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 16 16"><path d="m4 6 4 4 4-4"/></svg></button><div class="v4-group-items" id="navitems-7"><a class="side-link" aria-label="Cheat sheets · Bảng đối chiếu" title="Cheat sheets · Bảng đối chiếu" href="#mm-cheatsheet"><svg aria-hidden="true" class="side-icon" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M7 12h10M12 7v10"/></svg><span class="link-text">Cheat sheets · Bảng đối chiếu</span></a><a class="side-link" aria-label="28 câu quiz theo mental model" title="28 câu quiz theo mental model" href="#mm-quiz"><svg aria-hidden="true" class="side-icon" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M7 12h10M12 7v10"/></svg><span class="link-text">28 câu quiz theo mental model</span></a><a class="side-link" aria-label="Flashcards &amp; quiz hiện có" title="Flashcards &amp; quiz hiện có" href="#practice"><svg aria-hidden="true" class="side-icon" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="4"/><path d="M8 12h8M12 8v8"/></svg><span class="link-text">Flashcards &amp; quiz hiện có</span></a><a class="side-link" aria-label="Luyện 15 phút mỗi ngày" title="Luyện 15 phút mỗi ngày" href="#mm-practice"><svg aria-hidden="true" class="side-icon" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M7 12h10M12 7v10"/></svg><span class="link-text">Luyện 15 phút mỗi ngày</span></a><a class="side-link" aria-label="Lộ trình luyện 4 tuần" title="Lộ trình luyện 4 tuần" href="#plan"><svg aria-hidden="true" class="side-icon" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="4"/><path d="M8 12h8M12 8v8"/></svg><span class="link-text">Lộ trình luyện 4 tuần</span></a><a class="side-link" aria-label="Ghi chú Markdown gốc" title="Ghi chú Markdown gốc" href="#original"><svg aria-hidden="true" class="side-icon" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="4"/><path d="M8 12h8M12 8v8"/></svg><span class="link-text">Ghi chú Markdown gốc</span></a><a class="side-link" aria-label="17 file Markdown tham khảo" title="17 file Markdown tham khảo" href="#source-library"><svg aria-hidden="true" class="side-icon" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="4"/><path d="M8 12h8M12 8v8"/></svg><span class="link-text">17 file Markdown tham khảo</span></a></div></div></nav><div class="aside-note">Self-contained HTML. Mở trên máy tính/điện thoại, không cần Internet. Có thể Ctrl+P để in. Thông tin IT là ví dụ luyện giao tiếp, không phải kết quả kiểm tra cấu hình thực tế.</div></aside><main class="content"><div class="mobile-topbar"><button aria-controls="appSidebar" aria-expanded="false" aria-label="Mở mục lục" id="mobileNavToggle" type="button"><svg aria-hidden="true" fill="none" height="20" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="20"><path d="M4 7h16M4 12h16M4 17h16"></path></svg><span>Mục lục</span></button><span class="mobile-site-name">Workplace English</span></div><header class="hero" id="top"><div class="eyebrow">ENGLISH FOR REAL CONVERSATIONS · PRACTICAL LEARNING</div><h1>Speak naturally —<br/>at lunch, in meetings &amp; in tech courses.</h1><p>Học theo cụm dễ nói: IN / ON / AT / BY, GET / MAKE / DO / TAKE / HAVE; 221 hội thoại cùng 70 mẫu câu meeting về thử nghiệm, xin logs, chờ approval, báo cáo với PMO / leaders và trao đổi với đồng nghiệp Pháp. Kèm hội thoại thực hành và luyện phản xạ trong meeting.</p><div class="tags"><span class="tag">Lunch • coffee • after-work</span><span class="tag">AI coding agent</span><span class="tag">SonarQube • Snyk</span><span class="tag">Cloud courses</span><span class="tag">Prepositions &amp; fluency</span><span class="tag">50 real-life adverbs</span><span class="tag">Present Perfect + timelines</span><span class="tag">Ask to repeat naturally</span><span class="tag">Leaders + Developers</span><span class="tag">Meeting Fluency Lab</span></div><div class="v4-hero-jumps"><a href="#reflex-lab">Phản xạ nhanh ↗</a><a href="#phrasal-lab">Phrasal verbs ↗</a><a href="#word-lab">Từ dễ nhầm ↗</a><a href="#townhall-lab">Town Hall ↗</a><a href="#meeting-response-lab">Meeting fluency ↗</a><a href="#prep-lab">IN / ON labs ↗</a><a href="#collocations">Collocations ↗</a><a href="#conversation-deep-dive">Real-life situations ↗</a><a href="#source-library">Source library ↗</a></div></header>
 <div class="rx-overview-strip" style="display:flex;flex-wrap:wrap;gap:8px;margin:12px 0 16px"><a href="#reflex-lab" style="text-decoration:none;padding:8px 12px;background:#edf8f5;color:#08746d;border-radius:9px;font-weight:700;font-size:12px">36 rapid-response situations</a><a href="#phrasal-lab" style="text-decoration:none;padding:8px 12px;background:#edf8f5;color:#08746d;border-radius:9px;font-weight:700;font-size:12px">60 useful verb phrases</a><a href="#word-lab" style="text-decoration:none;padding:8px 12px;background:#edf8f5;color:#08746d;border-radius:9px;font-weight:700;font-size:12px">26 confusing word sets</a></div><div class="quick-stats"><div class="stat"><strong>221</strong><span>Hội thoại theo vai</span></div><div class="stat"><strong>52</strong><span>Cặp nên nói / nên tránh</span></div><div class="stat"><strong>385</strong><span>Flashcards: course + trạng từ</span></div><div class="stat"><strong>82</strong><span>Quiz có giải thích</span></div></div>
@@ -8207,4 +8236,182 @@ window.addEventListener('afterprint',()=>{if(!printRestore)return;state.focus=pr
 })();
 </script>
 
+<script id="pb-search-highlighting-script">
+/* Search-to-TOC: mark actual phrases, chapter badges and previous/next match navigation. */
+(()=>{
+ 'use strict';
+ const search=document.getElementById('globalSearch');
+ const sidebar=document.getElementById('appSidebar');
+ const clear=document.getElementById('clearSearch');
+ const reader=document.querySelector('.pb-readerbar');
+ const chapters=[...document.querySelectorAll('main > section.section[id]')];
+ if(!search||!sidebar||!reader||!chapters.length)return;
+ const linkById=new Map([...sidebar.querySelectorAll('a.side-link[href^="#"]')].map(a=>[decodeURIComponent(a.getAttribute('href').slice(1)),a]));
+ const panel=document.createElement('div');panel.id='pb-search-panel';panel.setAttribute('role','region');panel.setAttribute('aria-label','Kết quả tìm kiếm theo chương');
+ panel.innerHTML='<div class="pb-search-summary"><div><strong id="pb-search-summary-text"></strong><small id="pb-search-detail" style="display:block"></small></div><div class="pb-search-controls"><button id="pb-search-prev" title="Kết quả trước" aria-label="Kết quả trước">‹ Trước</button><span id="pb-search-position" style="font-size:11px;color:#7b632e">—</span><button id="pb-search-next" title="Kết quả tiếp" aria-label="Kết quả tiếp">Tiếp ›</button></div></div><div class="pb-search-results" id="pb-search-results"></div>';
+ const guide=reader.nextElementSibling;
+ if(guide?.classList.contains('pb-reader-help'))guide.insertAdjacentElement('afterend',panel);
+ else reader.insertAdjacentElement('afterend',panel);
+ const summary=panel.querySelector('#pb-search-summary-text'), detail=panel.querySelector('#pb-search-detail');
+ const results=panel.querySelector('#pb-search-results');
+ const position=panel.querySelector('#pb-search-position');
+ const prev=panel.querySelector('#pb-search-prev'),next=panel.querySelector('#pb-search-next');
+ let matches=[],marks=[],current=-1,timer=0,lastQuery='',lastCount=0;
+ const ignoreTags=new Set(['SCRIPT','STYLE','NOSCRIPT','SVG','BUTTON','SELECT','OPTION','INPUT','TEXTAREA','TEMPLATE']);
+ const lower=t=>t.toLocaleLowerCase();
+ function clearMarks(){
+  const touched=new Set();
+  document.querySelectorAll('mark.pb-search-mark').forEach(m=>{
+    const p=m.parentNode;if(!p)return;
+    m.replaceWith(document.createTextNode(m.textContent));touched.add(p);
+  });
+  touched.forEach(p=>p.normalize());
+  marks=[];current=-1;
+ }
+ function clearNavigation(){
+  sidebar.querySelectorAll('.pb-search-hit').forEach(a=>a.classList.remove('pb-search-hit'));
+  sidebar.querySelectorAll('.pb-search-badge').forEach(b=>b.remove());
+  sidebar.querySelectorAll('.pb-search-group').forEach(g=>g.classList.remove('pb-search-group'));
+  sidebar.querySelectorAll('.side-group[data-pb-search-opened]').forEach(g=>{
+   if(!g.classList.contains('pb-group-active')){g.classList.add('v4-group-closed');g.querySelector('.v4-group-heading')?.setAttribute('aria-expanded','false')}
+   delete g.dataset.pbSearchOpened;
+  });
+  sidebar.querySelectorAll('a[data-pb-search-title]').forEach(a=>{a.title=a.dataset.pbSearchTitle;delete a.dataset.pbSearchTitle});
+ }
+ function clean(){clearMarks();clearNavigation();matches=[];lastQuery='';lastCount=0;panel.classList.remove('pb-visible');position.textContent='—';}
+ function eligible(node){
+  const el=node.parentElement;
+  if(!el||!node.nodeValue.trim())return false;
+  if(ignoreTags.has(el.tagName))return false;
+  if(el.closest('script,style,noscript,svg,button,select,textarea,template,mark,.pb-readerbar,.pb-reader-help,#pb-search-panel,.hidden,.sr-only'))return false;
+  return true;
+ }
+ function markText(section,q,cap){
+  const walker=document.createTreeWalker(section,NodeFilter.SHOW_TEXT);
+  const texts=[];let node;
+  while((node=walker.nextNode())){if(eligible(node)&&lower(node.nodeValue).includes(q))texts.push(node)}
+  let count=0;
+  for(const n of texts){
+    if(count>=cap)break;
+    const raw=n.nodeValue,low=lower(raw);
+    let from=0,at;
+    const frag=document.createDocumentFragment();
+    while((at=low.indexOf(q,from))!==-1 && count<cap){
+      if(at>from)frag.append(document.createTextNode(raw.slice(from,at)));
+      const span=document.createElement('mark');span.className='pb-search-mark';span.textContent=raw.slice(at,at+q.length);span.dataset.chapter=section.id;
+      frag.append(span);marks.push(span);count++;from=at+q.length;
+    }
+    if(from<raw.length)frag.append(document.createTextNode(raw.slice(from)));
+    n.replaceWith(frag);
+  }
+  return count;
+ }
+ function titleOf(s){return(s.querySelector(':scope > .section-head h2')?.textContent||s.querySelector('h2')?.textContent||s.id).replace(/\s+/g,' ').trim()}
+ function setVisibleTarget(m){
+  const s=m.closest('section.section');if(!s)return;
+  // Click the existing chapter navigator to preserve focus/active states and saved chapter behavior.
+  const readerOption=document.getElementById('pbChapterSelect');
+  if(s.classList.contains('pb-focus-hidden') && document.getElementById('pbFocus')?.getAttribute('aria-pressed')==='true')document.getElementById('pbFocus').click();
+  const a=linkById.get(s.id);
+  if(a)a.click();
+  else if(readerOption){readerOption.value=s.id;readerOption.dispatchEvent(new Event('change',{bubbles:true}));}
+  const collapsed=s.classList.contains('pb-content-collapsed');
+  if(collapsed)s.querySelector(':scope > .section-head > .pb-chapter-toggle')?.click();
+  // Open nested topic groups and details containing the match.
+  let p=m.parentElement;
+  while(p&&p!==s){
+   if(p.tagName==='DETAILS'&&!p.open)p.open=true;
+   if(p.classList.contains('pb-sub-hidden')){
+     let h=p.previousElementSibling;
+     while(h&&h.tagName!=='H3')h=h.previousElementSibling;
+     const toggle=h?.querySelector('.pb-sub-toggle');
+     if(toggle?.getAttribute('aria-expanded')==='false')toggle.click();
+   }
+   p=p.parentElement;
+  }
+ }
+ function gotoHit(index){
+  if(!marks.length)return;
+  if(current>=0&&marks[current])marks[current].classList.remove('pb-search-current');
+  current=(index+marks.length)%marks.length;
+  let m=marks[current];
+  m.classList.add('pb-search-current');
+  setVisibleTarget(m);
+  const chapter=m.dataset.chapter;
+  results.querySelectorAll('.pb-search-result').forEach(b=>b.classList.toggle('pb-search-result-current',b.dataset.chapter===chapter));
+  position.textContent=(current+1)+' / '+marks.length;
+  requestAnimationFrame(()=>setTimeout(()=>{
+    m.scrollIntoView({behavior:'smooth',block:'center'});
+    // Focus without stealing the reader's keyboard focus on every scroll.
+  },100));
+ }
+ function update(){
+  const q=lower(search.value.trim()).replace(/\s+/g,' ');
+  if(q===lastQuery)return;
+  clearMarks();clearNavigation();matches=[];lastCount=0;lastQuery=q;
+  if(!q){panel.classList.remove('pb-visible');return;}
+  // Avoid highlighter overload for single-letter queries (chapter discovery still works).
+  const highlightEnabled=q.length>=2;
+  const perChapterLimit=36,maxHighlights=420;
+  for(const s of chapters){
+    const exists=lower(s.textContent).includes(q) || [...s.querySelectorAll('[data-search]')].some(e=>lower(e.getAttribute('data-search')||'').includes(q));
+    if(!exists)continue;
+    let found=0;
+    if(highlightEnabled&&marks.length<maxHighlights)found=markText(s,q,Math.min(perChapterLimit,maxHighlights-marks.length));
+    const a=linkById.get(s.id);
+    if(a){
+      a.classList.add('pb-search-hit');
+      const badge=document.createElement('span');badge.className='pb-search-badge';badge.textContent=found?String(found):'•';badge.setAttribute('aria-hidden','true');a.append(badge);
+      if(!('pbSearchTitle' in a.dataset))a.dataset.pbSearchTitle=a.title;
+      a.title=(a.getAttribute('aria-label')||titleOf(s))+' · Có kết quả: '+q;
+      a.closest('.side-group')?.classList.add('pb-search-group');
+    }
+    matches.push({section:s,label:titleOf(s),count:found});
+  }
+  // Open only a small number of matching sidebar groups; keep broad searches compact.
+  if(matches.length<=12){
+   matches.forEach(x=>{
+    const g=linkById.get(x.section.id)?.closest('.side-group');
+    if(g?.classList.contains('v4-group-closed')){
+     g.dataset.pbSearchOpened='1';g.classList.remove('v4-group-closed');
+     g.querySelector('.v4-group-heading')?.setAttribute('aria-expanded','true');
+    }
+   });
+  }
+  panel.classList.add('pb-visible');
+  summary.textContent=matches.length?matches.length+' chương có “'+search.value.trim()+'”':'Không tìm thấy kết quả cho “'+search.value.trim()+'”';
+  const capped=marks.length>=maxHighlights||matches.some(m=>m.count>=perChapterLimit);
+  detail.textContent=matches.length?(highlightEnabled?marks.length+' vị trí được tô sáng'+(capped?' (giới hạn để trang không bị chậm)':'')+' · Màu vàng: có kết quả · Màu xanh: đang đọc':'Nhập ít nhất 2 ký tự để tô sáng từng vị trí'):'Thử từ khóa khác hoặc xóa lọc.';
+  position.textContent=marks.length?'0 / '+marks.length:'—';
+  prev.disabled=next.disabled=!marks.length;
+  const fragment=document.createDocumentFragment();
+  matches.forEach((x,i)=>{
+    const btn=document.createElement('button');btn.type='button';btn.className='pb-search-result';btn.dataset.chapter=x.section.id;
+    btn.title='Đi đến chương '+x.label;
+    const name=document.createElement('span');name.textContent=x.label;
+    const badge=document.createElement('b');badge.textContent=x.count||'•';
+    btn.append(name,badge);btn.addEventListener('click',()=>{
+      const ix=marks.findIndex(m=>m.dataset.chapter===x.section.id);
+      if(ix>=0)gotoHit(ix);
+      else{const a=linkById.get(x.section.id);if(a)a.click();else x.section.scrollIntoView({behavior:'smooth',block:'start'});}
+    });fragment.append(btn);
+  });
+  results.replaceChildren(fragment);
+  // All found chapters should appear in the left menu, even if their group was collapsed.
+  // Do not force-open every group: it would make the navigation long and distracting.
+  document.getElementById('searchStatus').textContent=matches.length+' chương có kết quả';
+ }
+ function schedule(){clearTimeout(timer);timer=setTimeout(update,170)}
+ search.addEventListener('input',schedule);
+ clear?.addEventListener('click',()=>{clearTimeout(timer);clean();});
+ search.addEventListener('keydown',e=>{
+  if(e.key==='Escape'){search.value='';search.dispatchEvent(new Event('input',{bubbles:true}));search.focus();}
+  else if(e.key==='Enter'&&marks.length){e.preventDefault();gotoHit(current<0?0:current+1);}
+ });
+ prev.addEventListener('click',()=>gotoHit(current<0?0:current-1));
+ next.addEventListener('click',()=>gotoHit(current+1));
+ window.addEventListener('beforeprint',()=>{document.querySelectorAll('mark.pb-search-mark').forEach(m=>m.classList.remove('pb-search-current'))});
+ if(search.value.trim())setTimeout(update,210);
+})();
+</script>
 </body></html>
