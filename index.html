@@ -1148,6 +1148,33 @@ body:not(.study-view) #learningDashboard .ed-card-meta {
   body:not(.study-view) #learningDashboard {width:100%;max-width:100%;}
 }
 </style>
+<style id="ed-home-fulltext-style">
+
+/* Search within full chapters from the Dashboard (not only titles / first 15k characters) */
+.ed-full-search-panel{border:1.5px solid #A6C1D0;background:#FFFDF8;border-radius:18px;padding:19px;margin:15px 0 23px;color:#2D4268;box-shadow:3px 4px 0 #DFE7EE}
+.ed-full-search-panel[hidden]{display:none!important}
+.ed-full-search-head{display:flex;justify-content:space-between;align-items:flex-start;gap:15px;border-bottom:1px dashed #CED7E4;padding-bottom:12px;margin-bottom:14px}
+.ed-full-search-head strong{font-weight:850;font-size:16px;line-height:1.35}
+.ed-full-search-head p{font-size:12px;color:#667085;margin:4px 0 0;line-height:1.5}
+.ed-full-search-tag{white-space:nowrap;background:#E5F4ED;color:#1B665A;padding:5px 9px;border-radius:40px;font-size:11px;font-weight:750}
+.ed-full-search-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.ed-full-search-item{border:1px solid #CBD6E2;border-radius:14px;background:#FCFCFA;padding:13px;min-width:0;display:flex;flex-direction:column;gap:9px}
+.ed-full-search-item-head{display:flex;justify-content:space-between;gap:12px;align-items:flex-start}
+.ed-full-search-item-meta{min-width:0}
+.ed-full-search-item-meta>span{font-size:10px;font-weight:650;color:#667085}
+.ed-full-search-item-meta h3{margin:3px 0 0;font-weight:800;color:#223F62;font-size:13px;line-height:1.4}
+.ed-full-search-count{flex:none;background:#EAF1FC;border-radius:9px;color:#285682;font-size:10px;padding:4px 7px;font-weight:750}
+.ed-full-search-excerpts{display:grid;gap:6px}
+button.ed-full-search-excerpt{appearance:none;-webkit-appearance:none;text-align:left;min-width:0;border:1px solid #DAE3E8;background:white;border-radius:9px;color:#4A5A70;font-size:12px;line-height:1.65;padding:8px 10px;cursor:pointer;overflow-wrap:anywhere}
+button.ed-full-search-excerpt:hover{background:#F1F8FE;border-color:#7CA9C7}
+.ed-full-search-excerpt mark{background:#F9DA77;color:#283E60;border-radius:3px;padding:0 2px;font-weight:850}
+.ed-full-search-open{align-self:flex-start;border:0;background:transparent;color:#2D4268;font-weight:750;font-size:12px;padding:4px;cursor:pointer}
+.ed-full-search-open:hover{text-decoration:underline}
+.ed-full-search-more{display:block;margin:16px auto 0;border:1px solid #2D4268;background:#2D4268;color:white;border-radius:11px;padding:9px 17px;font-size:12px;font-weight:750;cursor:pointer}
+.ed-full-search-empty{padding:16px;color:#667085;margin:0}
+@media(max-width:980px){.ed-full-search-list{grid-template-columns:1fr}.ed-full-search-head{flex-wrap:wrap}}
+@media(max-width:600px){.ed-full-search-panel{padding:13px}.ed-full-search-head strong{font-size:14px}.ed-full-search-tag{white-space:normal}}
+</style>
 </head><body>
 
 <div class="ed-home-shell" id="edHomeShell">
@@ -13687,6 +13714,13 @@ window.addEventListener('afterprint',()=>{if(!printRestore)return;state.focus=pr
     // Focus without stealing the reader's keyboard focus on every scroll.
   },100));
  }
+ // Allow Dashboard search results to open the correct matching passage.
+ window.pbJumpToChapterHit=(chapter,ordinal=0)=>{
+   const chapterMarks=marks.filter(m=>m.dataset.chapter===chapter);
+   if(!chapterMarks.length)return false;
+   const target=chapterMarks[Math.max(0,Math.min(Number(ordinal)||0,chapterMarks.length-1))];
+   gotoHit(marks.indexOf(target));return true;
+ };
  function update(){
   const q=lower(search.value.trim()).replace(/\s+/g,' ');
   if(q===lastQuery)return;
@@ -13874,6 +13908,18 @@ window.addEventListener('afterprint',()=>{if(!printRestore)return;state.focus=pr
  const grpCodes=['quick','grammar','prepositions','vocab','meetings','social','courses'];
  const norm=s=>String(s||'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLocaleLowerCase().replace(/đ/g,'d');
  const lessons=[];
+ function extractSectionText(section){
+   const parts=[];
+   const w=document.createTreeWalker(section,NodeFilter.SHOW_TEXT);
+   let n;
+   while((n=w.nextNode())){
+     const parent=n.parentElement;
+     if(!parent||!n.nodeValue.trim())continue;
+     if(parent.closest('script,style,noscript,svg,button,input,select,textarea,template,.sr-only,.hidden'))continue;
+     parts.push(n.nodeValue.trim());
+   }
+   return parts.join(' ').replace(/\s+/g,' ').trim();
+ }
  nav.forEach((group,g)=>{
   group.querySelectorAll('a.side-link[href^="#"]').forEach((a)=>{
     const id=decodeURIComponent(a.getAttribute('href').slice(1));
@@ -13882,7 +13928,8 @@ window.addEventListener('afterprint',()=>{if(!printRestore)return;state.focus=pr
     const title=(a.querySelector('.link-text')?.textContent||a.textContent||id).trim();
     const head=sec.querySelector('.section-head');
     const summary=head?.querySelector('p')?.textContent?.trim()||sec.querySelector(':scope > p')?.textContent?.trim()||sec.querySelector('p')?.textContent?.trim()||'';
-    lessons.push({id,title,group:g,groupLabel:shortLabels[g],description:summary,link:a,section:sec,order:lessons.length,normalized:norm(title+' '+summary+' '+sec.textContent.slice(0,15000))});
+    const fullText=extractSectionText(sec);
+    lessons.push({id,title,group:g,groupLabel:shortLabels[g],description:summary,link:a,section:sec,order:lessons.length,normalized:norm(title+' '+summary+' '+fullText),rawContent:fullText,rawNormalized:norm(fullText)});
   });
  });
  const total=lessons.length;
@@ -13941,6 +13988,109 @@ window.addEventListener('afterprint',()=>{if(!printRestore)return;state.focus=pr
    });
  }
 
+
+ // Search indexes the ENTIRE chapter, not just the short excerpt on its card.
+ let cachedSearchKey='',cachedSearchResults=[];
+ function getFullSearchResults(q){
+   if(!q)return [];
+   if(cachedSearchKey===q)return cachedSearchResults;
+   const found=[];
+   for(const lesson of lessons){
+     const content=lesson.rawContent||'';
+     const normText=lesson.rawNormalized;
+     const rawQ=q;
+     let pos=0,totalMatches=0;
+     const snippets=[];
+     while(pos<normText.length && totalMatches<2000){
+       const index=normText.indexOf(rawQ,pos);
+       if(index<0)break;
+       if(snippets.length<3){
+         const left=Math.max(0,index-76),right=Math.min(content.length,index+rawQ.length+106);
+         const excerpt=(left?'…':'')+content.slice(left,right).trim()+(right<content.length?'…':'');
+         snippets.push({excerpt,occurrence:totalMatches});
+       }
+       totalMatches++;pos=index+Math.max(rawQ.length,1);
+     }
+     // Keep a chapter discoverable even if its title matches but its body is empty.
+     const titleMatch=norm(lesson.title).includes(rawQ);
+     if(totalMatches||titleMatch)found.push({lesson,count:totalMatches||1,snippets});
+   }
+   cachedSearchKey=q;cachedSearchResults=found;return found;
+ }
+ const fullSearchPanel=document.createElement('section');
+ fullSearchPanel.id='edFullSearchPanel';fullSearchPanel.className='ed-full-search-panel';
+ fullSearchPanel.setAttribute('aria-label','Kết quả tìm kiếm trong toàn bộ nội dung');
+ fullSearchPanel.setAttribute('aria-live','polite');fullSearchPanel.hidden=true;
+ document.querySelector('.ed-controls-row')?.insertAdjacentElement('afterend',fullSearchPanel);
+ let resultLimit=10;
+ function appendMarkedText(container,text,q){
+   const low=norm(text),idx=low.indexOf(q);
+   if(idx<0){container.textContent=text;return;}
+   container.append(document.createTextNode(text.slice(0,idx)));
+   const mark=document.createElement('mark');mark.textContent=text.slice(idx,idx+q.length);container.append(mark);
+   container.append(document.createTextNode(text.slice(idx+q.length)));
+ }
+ function openSearchResult(id,ordinal=0){
+   openLesson(id);
+   const readerSearch=document.getElementById('globalSearch');
+   if(readerSearch){readerSearch.value=input.value.trim();readerSearch.dispatchEvent(new Event('input',{bubbles:true}));}
+   setTimeout(()=>{
+     if(window.pbJumpToChapterHit?.(id,ordinal))return;
+     const first=document.querySelector('#pb-search-panel .pb-search-result[data-chapter="'+CSS.escape(id)+'"]');
+     first?.click();
+   },400);
+ }
+ function renderFullSearch(q){
+   if(!q){fullSearchPanel.hidden=true;fullSearchPanel.replaceChildren();return;}
+   const found=getFullSearchResults(q),totalMatches=found.reduce((n,f)=>n+f.count,0);
+   fullSearchPanel.hidden=false;fullSearchPanel.replaceChildren();
+   const header=document.createElement('div');header.className='ed-full-search-head';
+   const title=document.createElement('div');
+   const strong=document.createElement('strong');strong.textContent=found.length+' chương có kết quả cho “'+input.value.trim()+'”';
+   const sub=document.createElement('p');sub.textContent=totalMatches+' vị trí khớp trong toàn bộ nội dung · Click vào kết quả để mở đúng chương và highlight từ khóa';
+   title.append(strong,sub);header.append(title);
+   if(found.length){
+     const tag=document.createElement('span');tag.className='ed-full-search-tag';tag.textContent='Tìm trong tất cả 55 chương';header.append(tag);
+   }
+   fullSearchPanel.append(header);
+   const list=document.createElement('div');list.className='ed-full-search-list';
+   found.slice(0,resultLimit).forEach(({lesson,count,snippets})=>{
+     const card=document.createElement('article');card.className='ed-full-search-item';
+     const top=document.createElement('div');top.className='ed-full-search-item-head';
+     const meta=document.createElement('div');meta.className='ed-full-search-item-meta';
+     const category=document.createElement('span');category.textContent=lesson.groupLabel;
+     const name=document.createElement('h3');name.textContent=lesson.title;meta.append(category,name);
+     const countEl=document.createElement('span');countEl.className='ed-full-search-count';countEl.textContent=count+' kết quả';
+     top.append(meta,countEl);card.append(top);
+     const excerpts=document.createElement('div');excerpts.className='ed-full-search-excerpts';
+     if(snippets.length){
+       snippets.slice(0,2).forEach((hit)=>{
+         const b=document.createElement('button');b.type='button';b.className='ed-full-search-excerpt';
+         appendMarkedText(b,hit.excerpt,q);
+         b.title='Mở đoạn này trong '+lesson.title;
+         b.addEventListener('click',()=>openSearchResult(lesson.id,hit.occurrence));excerpts.append(b);
+       });
+     }else{
+       const b=document.createElement('button');b.type='button';b.className='ed-full-search-excerpt';
+       b.textContent='Tên bài học khớp từ khóa — mở bài để xem chi tiết';
+       b.addEventListener('click',()=>openSearchResult(lesson.id,0));excerpts.append(b);
+     }
+     card.append(excerpts);
+     const open=document.createElement('button');open.className='ed-full-search-open';open.type='button';open.textContent='Xem trong bài học ↗';
+     open.addEventListener('click',()=>openSearchResult(lesson.id,0));card.append(open);
+     list.append(card);
+   });
+   if(!found.length){
+     const none=document.createElement('p');none.className='ed-full-search-empty';none.textContent='Không tìm thấy cụm này. Thử từ ngắn hơn hoặc kiểm tra chính tả.';
+     list.append(none);
+   }
+   fullSearchPanel.append(list);
+   if(found.length>resultLimit){
+     const more=document.createElement('button');more.type='button';more.className='ed-full-search-more';more.textContent='Xem thêm kết quả ('+(found.length-resultLimit)+' chương)';
+     more.addEventListener('click',()=>{resultLimit+=10;renderFullSearch(q)});fullSearchPanel.append(more);
+   }
+ }
+
  let tab='all',category='all',expanded=true,limit=12;
  const grid=document.getElementById('edCardGrid');
  const input=document.getElementById('edSearch');
@@ -13968,11 +14118,11 @@ window.addEventListener('afterprint',()=>{if(!printRestore)return;state.focus=pr
    if(tab==='ai')return l.group===4||['courses','townhall-lab'].includes(l.id);
    return true;
  }
- function matches(){const q=norm(input.value.trim());let arr=lessons.filter(l=>filterByTab(l)&&(category==='all'||l.group===Number(category))&&(!q||l.normalized.includes(q)));
+ function matches(){const q=norm(input.value.trim());let arr=lessons.filter(l=>q?l.normalized.includes(q):(filterByTab(l)&&(category==='all'||l.group===Number(category))));
    switch(sort.value){case 'az':arr.sort((a,b)=>a.title.localeCompare(b.title,'vi'));break;case 'za':arr.sort((a,b)=>b.title.localeCompare(a.title,'vi'));break;case 'unseen':arr.sort((a,b)=>Number(visitedSet.has(a.id))-Number(visitedSet.has(b.id))||a.order-b.order);break;case 'visited':arr.sort((a,b)=>Number(visitedSet.has(b.id))-Number(visitedSet.has(a.id))||a.order-b.order);break;}
    return arr;
  }
- function render(){const list=matches(),shown=list.slice(0,limit);grid.replaceChildren();const f=document.createDocumentFragment();
+ function render(){const q=norm(input.value.trim());renderFullSearch(q);const list=matches(),shown=list.slice(0,limit);grid.replaceChildren();const f=document.createDocumentFragment();
    shown.forEach((l,idx)=>{
      const b=document.createElement('button');b.type='button';b.className='ed-lesson tape-'+['yellow','blue','mint','coral'][l.order%4];
      if(visitedSet.has(l.id))b.classList.add('is-visited');b.setAttribute('aria-label','Mở bài học: '+l.title);
@@ -13986,7 +14136,7 @@ window.addEventListener('afterprint',()=>{if(!printRestore)return;state.focus=pr
    if(!list.length){const empty=document.createElement('div');empty.className='ed-empty';empty.textContent='Không tìm thấy bài học phù hợp. Thử từ khóa khác hoặc chọn “Xóa lọc”.';f.append(empty)}
    grid.append(f);
    count.textContent=shown.length+' / '+list.length+' bài học';loadMore.hidden=shown.length>=list.length;
-   ctitle.textContent=tab==='all'?'Khám phá bài học':tab==='conversation'?'Luyện nói theo tình huống':'AI-DLC, meetings & IT';updateProgress();
+   ctitle.textContent=q?'Các bài học liên quan':tab==='all'?'Khám phá bài học':tab==='conversation'?'Luyện nói theo tình huống':'AI-DLC, meetings & IT';updateProgress();
  }
  function openLesson(id){const l=byId.get(id);if(!l)return;
    activeHomeId=id;visitedSet.add(id);saveProgress();
@@ -14019,9 +14169,19 @@ window.addEventListener('afterprint',()=>{if(!printRestore)return;state.focus=pr
  document.querySelector('.ed-tabs').addEventListener('keydown',e=>{
    if(!['ArrowLeft','ArrowRight'].includes(e.key))return;const buttons=[...document.querySelectorAll('[data-ed-tab]')];let i=buttons.findIndex(b=>b.dataset.edTab===tab);i=(i+(e.key==='ArrowRight'?1:-1)+buttons.length)%buttons.length;buttons[i].focus();buttons[i].click();e.preventDefault();
  });
- input.addEventListener('input',()=>{limit=12;render();syncHomeNav()});
+ input.addEventListener('input',()=>{
+   limit=12;resultLimit=10;
+   if(input.value.trim()){
+     tab='all';category='all';
+     document.querySelectorAll('[data-ed-tab]').forEach(b=>{
+       const active=b.dataset.edTab==='all';b.setAttribute('aria-selected',String(active));b.tabIndex=active?0:-1;
+     });
+     chipList();
+   }
+   render();syncHomeNav();
+ });
  sort.addEventListener('change',render);
- document.getElementById('edReset').addEventListener('click',()=>{input.value='';category='all';sort.value='default';limit=12;chipList();render();syncHomeNav();input.focus()});
+ document.getElementById('edReset').addEventListener('click',()=>{input.value='';category='all';sort.value='default';limit=12;resultLimit=10;chipList();render();syncHomeNav();input.focus()});
  document.getElementById('edToggleFilters').addEventListener('click',e=>{expanded=!expanded;document.getElementById('edFilterBody').hidden=!expanded;e.currentTarget.setAttribute('aria-expanded',String(expanded));e.currentTarget.textContent=expanded?'Thu bộ lọc ⌃':'Mở bộ lọc ⌄'});
  loadMore.addEventListener('click',()=>{limit+=12;render()});
  document.addEventListener('click',e=>{
